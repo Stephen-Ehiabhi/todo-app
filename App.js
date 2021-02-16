@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Alert, TouchableOpacity, TouchableWithoutFeedback, Keyboard, FlatList, ScrollView } from 'react-native';
 import Nav from './components/Nav'
 import AddTodo from './components/AddTodo'
-
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function App() {
 
@@ -71,7 +71,10 @@ export default function App() {
               renderItem={({ item }) => {
                 return (
                   <TouchableOpacity onPress={() => deleteTodos(item.key)}>
-                    <Text style={styles.todo} >{item.text}</Text>
+                    <View style={styles.todo}>
+                      <MaterialIcons name="delete" size={24} color='#632b6c' />
+                      <Text style={styles.item}>{item.text}</Text>
+                    </View>
                   </TouchableOpacity>
                 )
               }}
@@ -93,20 +96,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#fcc3a3",
   },
   todolist: {
-    display: "flex",
     alignItems: "center",
     marginTop: 8,
   },
   todo: {
     width: 320,
     backgroundColor: "#f09f9c",
-    padding: 11,
+    padding: 15,
     marginTop: 12,
-    fontSize: 17,
-    color: "#632b6c",
-    fontWeight: "500",
-    textAlign: "center",
     opacity: .9,
-
+    flexDirection: "row",
   },
+  item: {
+    paddingHorizontal: 10,
+    color: "#632b6c",
+    textAlign: "center",
+    fontWeight: "500",
+    fontSize: 19,
+  }
 })
